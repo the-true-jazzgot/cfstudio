@@ -8,10 +8,29 @@ export const generalSettingsType = defineType({
     defineField({
       name: 'logo',
       type: 'image',
+      validation: (Rule) => Rule.required(),
         title: 'Logo',
         options: {
           hotspot: true,
         }
+    }),
+    defineField({
+      name: 'altforlogo',
+      type: 'string',
+      title: 'Alt Text For Logo',
+      description: "Very important for SEO and accessibility.",
+    }),
+    defineField({
+      name: 'number',
+      type: 'string',
+      title: 'Phone Number',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'email',
+      type: 'string',
+      title: 'Email Address',
+      validation: (Rule) => Rule.required(),
     }),
   ],
 })

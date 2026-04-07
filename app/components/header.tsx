@@ -12,19 +12,20 @@ export async function Header() {
 
   const phoneNumber = settings.number;
   const emailAddress = settings.email;
+  const services = [
+    { name: "branding & rebranding", link: "#" },
+    { name: "⁠projektowanie graficzne", link: "#" },
+    { name: "⁠strony www", link: "#" },
+    { name: "⁠produkt design", link: "#" },
+    { name: "⁠social media", link: "#" },
+    { name: "⁠foto & video", link: "#" },
+    { name: "⁠obsługa abonamentowa", link: "#" }
+  ];
 
   return <>
     <div className="w-full h-24 sticky top-0 z-20 flex items-center justify-between px-6 py-4">
       <LogoComponent />
-      <nav>
-        <ul className="flex items-center gap-6">
-          <Submenu name="Usługi" isOpen={false} children={[
-            { name: "Usługa 1", link: "/usluga-1" },
-            { name: "Usługa 2", link: "/usluga-2" },
-            { name: "Usługa 3", link: "/usluga-3" }
-          ]} />
-        </ul>
-      </nav>
+      <Submenu name="Usługi" isOpen={false} children={services} />
       <div className="flex items-center gap-6 text-white font-bold">
         <p className="text-white"><a href={`tel:${phoneNumber}`}>{phoneNumber}</a></p>
         <p className="text-white"><a href={`mailto:${emailAddress}`}>{emailAddress}</a></p>

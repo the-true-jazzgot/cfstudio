@@ -1,5 +1,6 @@
 'use client';
 
+import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 
 interface SubmenuProps {
@@ -15,18 +16,24 @@ export function Submenu({isOpen, children, name}: SubmenuProps) {
     const [isSubmenuOpen, setIsSubmenuOpen] = useState(isOpen);
 
     return <>
-        <li 
-            className="relative p-2 border-white border-3 bg-black/50 rounded-xl" 
+        <button 
+            className="relative p-2 border-white border-3 bg-black/50 rounded-xl cursor-pointer" 
             onMouseEnter={() => setIsSubmenuOpen(true)} 
             onMouseLeave={() => setIsSubmenuOpen(false)}>
-            {name}
-        </li>
-        {isSubmenuOpen && <ul className="absolute top-full left-0 mt-2 bg-white text-black rounded shadow-lg">
-            {children.map((child, index) => (
-                <li key={index} className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
-                    <a href={child.link}>{child.name}</a>
-                </li>
-            ))}
-        </ul>}  
+            <span>{name}</span>
+            <AnimatePresence>
+                {isSubmenuOpen && <motion.ul 
+                    className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 bg-black/50 gradient-border border-3 rounded-xl w-[400px]"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}>
+                    {children.map((child, index) => (
+                        <li key={index} className="px-4 py-2 hover:bg-gray-200/30 cursor-pointer">
+                            <a href={child.link}>{child.name}</a>
+                        </li>
+                    ))}
+                </motion.ul>}  
+            </AnimatePresence>
+        </button>
     </>;
 }

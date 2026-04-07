@@ -14,4 +14,11 @@ export const structure: StructureResolver = (S) =>
             .schemaType('generalSettings')
             .documentId('generalSettings')
         ),
+      S.listItem()
+        .title('Services')
+        .id('services')
+        .child(
+          S.documentTypeList('services')
+            .title('Services')
+        ),
     ])

@@ -26,9 +26,16 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
-.gradient-border {
+.gradient-a {
   border: 5px solid transparent;
   background: 
     linear-gradient(#00000088, #00000088) padding-box, 
     linear-gradient(to right, var(--brand-primary), var(--brand-secondary)) border-box;
+}
+
+.gradient-b {
+  border: 5px solid transparent;
+  background: 
+    #fff padding-box, 
+    linear-gradient(to right, var(--brand-secondary), var(--brand-primary)) border-box;
 }

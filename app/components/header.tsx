@@ -23,7 +23,7 @@ export async function Header() {
   ];
 
   return <>
-    <div className="w-full h-24 sticky top-0 z-20 flex items-center justify-between px-6 py-4">
+    <div className="w-full h-24 sticky top-0 z-20 flex items-center justify-between px-6 py-4 bg-black/20 backdrop-blur-sm">
       <LogoComponent />
       <Submenu name="Usługi" isOpen={false} children={services} />
       <div className="flex items-center gap-6 text-white font-bold">

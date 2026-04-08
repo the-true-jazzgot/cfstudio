@@ -2,9 +2,10 @@ import { client } from "@/sanity/lib/client";
 import { Header } from "./components/header";
 import { Hero } from "./components/hero";
 import { Service, ServiceSection } from "./components/service_section";
+import { TrustedUs } from "./components/trusted_us";
 
 export default async function Home() {
-  const query = `*[_type == "services"][]{name, description, gallery}`;
+  const query = `*[_type == "services"][]{_id, name, description, slug, gallery[]{picture{asset->{_id, metadata{dimensions{width,height}}}}, pictureDescription}}`;
   const services = await client.fetch(query);
 
   if (!services) {
@@ -12,16 +13,15 @@ export default async function Home() {
   }
 
   return <>
-    <Header />
+    <Header services={services} />
     <Hero />
     <div className="w-full h-screen">
     </div>
-    <div className="w-full h-screen">
+    <div className="w-full h-[80vh]">
     </div>
-    <div className="w-full min-h-screen bg-white/20 z-10 backdrop-blur-sm">
-      {services.map((service: Service) => (
-        <ServiceSection key={service._id} {...service} />
-      ))}
-    </div>
+    <TrustedUs />
+    {services.map((service: Service) => (
+      <ServiceSection key={service._id} {...service} />
+    ))}
   </>;
 }

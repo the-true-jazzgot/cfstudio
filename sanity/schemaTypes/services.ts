@@ -25,10 +25,11 @@ export const servicesType = defineType({
     }),
     defineField({
       name: 'description',
-      type: 'text',
+      type: 'array',
       title: 'Description',
+      of: [{ type: 'block' }],
       validation: (Rule) => Rule.required(),
-      description: 'Detailed description of the service',
+      description: 'Opis usługi, który będzie wyświetlany na stronie',
     }),
     defineField({
       name: 'gallery',

@@ -1,34 +1,47 @@
-import { client } from '@/sanity/lib/client'
+import { PortableText } from '@portabletext/react'
 import { ImageCarousel } from './ui/image_carousel'
+
+import type { PortableTextBlock } from '@portabletext/types'
 
 interface ServiceImage {
   _key: string
   picture: {
     asset: {
       _id: string
+      metadata?: {
+        dimensions: {
+          width: number
+          height: number
+        }
+      }
     }
   }
   pictureDescription: string
 }
 
 export interface Service {
-  _id: string
-  name: string
-  description: string
-  gallery: ServiceImage[]
+  _id: string;
+  name: string;
+  slug: {
+    current: string;
+  };
+  description: PortableTextBlock[];
+  gallery: ServiceImage[];
 }
 
 export function ServiceSection(service: Service) {
   return (
     <>
-      <div className="flex z-20 flex-wrap gradient-b">
-        <div className="w-full md:w-1/2 p-4">
+      <div id={service.slug.current} className="flex z-15 flex-wrap gradient-b rounded-lg w-[90%] mx-auto">
+        <div className="w-full md:w-1/3 p-4">
           {service && <>
-              <h3 className="text-xl font-semibold mb-2">{service.name}</h3>
-              <p className="text-gray-600">{service.description}</p>
+              <h3 className="text-xl font-semibold mb-2 text-black">{service.name}</h3>
+              <div className="text-black">
+                <PortableText value={service.description} />
+              </div>
           </>}
         </div>
-        <div className="w-full md:w-1/2 p-4">
+        <div className="w-full md:w-2/3 p-4">
           {service && service.gallery ? (
             <ImageCarousel images={service.gallery} />
           ) : (

@@ -21,4 +21,13 @@ export const structure: StructureResolver = (S) =>
           S.documentTypeList('services')
             .title('Services')
         ),
+      S.listItem()
+        .title('Logos')
+        .id('logos')
+        .child(
+          S.editor()
+            .id('logos')
+            .schemaType('logos')
+            .documentId('logos')
+        )
     ])

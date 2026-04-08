@@ -5,6 +5,11 @@
   --foreground: #171717;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -34,8 +39,49 @@ body {
 }
 
 .gradient-b {
+  position: relative;
+  background-color: #ffffff88;
+  backdrop-filter: blur(10px);
+}
+
+.gradient-b::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
   border: 5px solid transparent;
-  background: 
-    #fff padding-box, 
-    linear-gradient(to right, var(--brand-secondary), var(--brand-primary)) border-box;
+  background: linear-gradient(var(--brand-primary), var(--brand-secondary));
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+}
+
+
+
+.logo-marquee-wrapper {
+  position: relative;
+}
+
+.logo-marquee {
+  display: inline-flex;
+  align-items: center;
+  gap: 2rem;
+  white-space: nowrap;
+}
+
+.logo-marquee-item {
+  flex: 0 0 auto;
+}
+
+.animate-marquee {
+  animation: marquee-left 24s linear infinite;
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }

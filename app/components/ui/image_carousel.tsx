@@ -10,6 +10,12 @@ interface CarouselImage {
   picture: {
     asset: {
       _id: string
+      metadata?: {
+        dimensions: {
+          width: number
+          height: number
+        }
+      }
     }
   }
   pictureDescription: string
@@ -47,10 +53,13 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
 
   const currentImage = images[current]
   const imageUrl = urlFor(currentImage.picture).url()
+  const dimensions = currentImage.picture.asset.metadata?.dimensions
+  const width = dimensions?.width ?? 800
+  const height = dimensions?.height ?? 600
 
   return (
     <div
-      className="relative w-full h-96 bg-gray-100 rounded-lg overflow-hidden"
+      className="relative w-full bg-gray-100 rounded-lg overflow-hidden"
       onMouseEnter={() => setIsAutoPlay(false)}
       onMouseLeave={() => setIsAutoPlay(true)}
     >
@@ -60,14 +69,15 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          className="absolute inset-0"
+          transition={{ duration: 0.6 }}
+          className="relative w-full"
         >
           <Image
             src={imageUrl}
             alt={currentImage.pictureDescription}
-            fill
-            className="object-cover"
+            width={width}
+            height={height}
+            className="object-contain w-full h-auto"
             onLoad={() => setLoading(false)}
             onError={() => setLoading(false)}
           />
@@ -80,12 +90,10 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
         </div>
       )}
 
-      {/* Description overlay */}
       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
         <p className="text-white text-sm">{currentImage.pictureDescription}</p>
       </div>
 
-      {/* Navigation buttons */}
       <button
         onClick={prev}
         className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 transition-colors z-10"
@@ -106,7 +114,6 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
         </svg>
       </button>
 
-      {/* Dot indicators */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
         {images.map((_, index) => (
           <button

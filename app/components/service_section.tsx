@@ -32,11 +32,11 @@ export interface Service {
 export function ServiceSection(service: Service) {
   return (
     <>
-      <div id={service.slug.current} className="flex z-15 flex-wrap gradient-b rounded-lg w-[90%] mx-auto">
+      <section id={service.slug.current} className="flex z-15 flex-wrap gradient-b rounded-xl w-[90%] mx-auto mb-15" style={{ scrollMarginTop: '7rem' }}>
         <div className="w-full md:w-1/3 p-4">
           {service && <>
-              <h3 className="text-xl font-semibold mb-2 text-black">{service.name}</h3>
-              <div className="text-black">
+              <h2 className="text-xl font-semibold mb-2 text-black">{service.name}</h2>
+              <div className="text-black text-shadow-sm text-justify leading-relaxed">
                 <PortableText value={service.description} />
               </div>
           </>}
@@ -50,7 +50,7 @@ export function ServiceSection(service: Service) {
             </div>
           )}
         </div>
-      </div>
+      </section>
     </>
   )
 }

@@ -16,17 +16,17 @@ interface LogosDocument {
 }
 
 export async function TrustedUs() {
-  const query = `*[_type == "logos"][0]{gallery[]{_key, picture{asset->{_id}}, pictureDescription}}`
-  const data = await client.fetch<LogosDocument>(query)
-  const logos = data?.gallery ?? []
+  const query = `*[_type == "logos"][0]{gallery[]{_key, picture{asset->{_id}}, pictureDescription}}`;
+  const data = await client.fetch<LogosDocument>(query);
+  const logos = data?.gallery ?? [];
 
   if (logos.length === 0) {
     return null
   }
 
-  const baseCount = Math.max(8, logos.length)
-  const baseLogos = Array.from({ length: baseCount }, (_, index) => logos[index % logos.length])
-  const marqueeLogos = [...baseLogos, ...baseLogos]
+  const baseCount = Math.max(8, logos.length);
+  const baseLogos = Array.from({ length: baseCount }, (_, index) => logos[index % logos.length]);
+  const marqueeLogos = [...baseLogos, ...baseLogos];
 
   return (
     <section className="w-full overflow-hidden py-8 z-10 border-y-2 border-white/20 backdrop-blur-sm mb-10 ">

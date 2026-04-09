@@ -1,7 +1,7 @@
 'use client';
 
 import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 
 interface SubmenuProps {
     name: string;
@@ -10,6 +10,23 @@ interface SubmenuProps {
         name: string;
         link: string;
     }[];
+}
+
+function handleAnchorScroll(event: MouseEvent<HTMLAnchorElement>, link: string) {
+    if (!link.startsWith("#")) {
+        return;
+    }
+
+    const id = link.slice(1);
+    const target = document.getElementById(id);
+
+    if (!target) {
+        return;
+    }
+
+    event.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.pushState(null, "", link);
 }
 
 export function Submenu({isOpen, children, name}: SubmenuProps) {
@@ -31,7 +48,7 @@ export function Submenu({isOpen, children, name}: SubmenuProps) {
                     exit={{ opacity: 0, y: -10 }}>
                     {children.map((child, index) => (
                         <li key={index} className="px-4 py-2 hover:bg-gray-200/30 cursor-pointer">
-                            <a href={child.link}>{child.name}</a>
+                            <a href={child.link} onClick={(event) => handleAnchorScroll(event, child.link)}>{child.name}</a>
                         </li>
                     ))}
                 </motion.ul>}  

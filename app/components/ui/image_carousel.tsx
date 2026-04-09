@@ -96,7 +96,7 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
 
       <button
         onClick={prev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 transition-colors z-10"
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 transition-colors z-10 cursor-pointer"
         aria-label="Previous image"
       >
         <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -106,7 +106,7 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
 
       <button
         onClick={next}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 transition-colors z-10"
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 transition-colors z-10 cursor-pointer"
         aria-label="Next image"
       >
         <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -119,7 +119,7 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
           <button
             key={index}
             onClick={() => setCurrent(index)}
-            className={`w-2 h-2 rounded-full transition-colors ${
+            className={`w-2 h-2 rounded-full transition-colors cursor-pointer ${
               index === current ? 'bg-white' : 'bg-white/40'
             }`}
             aria-label={`Go to image ${index + 1}`}
@@ -127,7 +127,6 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
         ))}
       </div>
 
-      {/* Image counter */}
       <div className="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
         {current + 1} / {totalImages}
       </div>

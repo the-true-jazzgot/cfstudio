@@ -1,9 +1,11 @@
 import { client } from "@/sanity/lib/client";
 import { Header } from "./components/header";
 import { Hero } from "./components/hero";
-import { Service, ServiceSection } from "./components/service_section";
+import { ServiceSection } from "./components/service_section";
 import { TrustedUs } from "./components/trusted_us";
 import { Appear } from "./components/animations/appear";
+import { Service } from "./interfaces";
+import { ServiceWrapper } from "./components/service_wrapper";
 
 export default async function Home() {
   const query = `*[_type == "services"][]{_id, name, description, slug, gallery[]{picture{asset->{_id, metadata{dimensions{width,height}}}}, pictureDescription}}`;
@@ -23,7 +25,7 @@ export default async function Home() {
     <TrustedUs />
     {services.map((service: Service) => (
       <Appear key={service._id}>
-        <ServiceSection key={service._id} {...service} />
+        <ServiceWrapper service={service} key={service._id} />
       </Appear>
     ))}
   </>;

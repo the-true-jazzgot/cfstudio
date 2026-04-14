@@ -43,8 +43,11 @@ export function Video() {
       key={src}
       ref={videoRef}
       autoPlay
-      loop
+      playsInline
       muted
+      loop
+      preload="auto"
+      webkit-playsinline="true"
       className="absolute w-full h-full object-cover"
     >
       <source src={src} type="video/mp4" />

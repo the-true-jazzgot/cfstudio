@@ -13,6 +13,7 @@ export function ServiceWrapper(props: ServiceWrapperProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     return <>
-        {isOpen ? <ServiceSectionExpanded {...props} setIsOpen={setIsOpen} /> : <ServiceSection {...props} setIsOpen={setIsOpen} />}
+        {isOpen && <ServiceSectionExpanded {...props} setIsOpen={setIsOpen} />}
+        <ServiceSection {...props} setIsOpen={setIsOpen} />
     </>
 }   

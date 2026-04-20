@@ -10,10 +10,10 @@ interface ServiceSectionProps {
 export function ServiceSection({ service, setIsOpen }: ServiceSectionProps) {
   return (
     <>
-      <section id={service.slug.current} className="relative z-15 bg-white/40 rounded-xl w-[90%] mx-auto mb-15 drop-shadow-lg" style={{ scrollMarginTop: '7rem' }}>
-        <h2 className="text-3xl font-semibold mb-2 text-black text-center pt-4">{service.name}</h2>
+      <section id={service.slug.current} className="relative z-15 w-[90%] mx-auto mb-15 drop-shadow-lg" style={{ scrollMarginTop: '7rem' }}>
+        <h2 className="text-3xl font-semibold text-black text-center mb-2 p-4 bg-white/40 rounded-xl ">{service.name}</h2>
         <div className="flex justify-between">
-          <div className="w-full md:w-1/3 p-4">
+          <div className="w-full md:w-1/3 p-4 bg-white/40 rounded-xl mr-2">
             {service && <>
                 <div className="text-black text-shadow-sm text-justify leading-relaxed">
                   <PortableText value={service.description} />
@@ -23,7 +23,7 @@ export function ServiceSection({ service, setIsOpen }: ServiceSectionProps) {
                 </button>
             </>}
           </div>
-          <div className="w-full md:w-2/3 p-4">
+          <div className="w-full md:w-2/3 p-4 bg-white/40 rounded-xl ">
             {service && service.gallery ? (
               <ImageCarousel images={service.gallery} />
             ) : (

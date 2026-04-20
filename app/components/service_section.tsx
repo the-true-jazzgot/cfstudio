@@ -10,8 +10,8 @@ interface ServiceSectionProps {
 export function ServiceSection({ service, setIsOpen }: ServiceSectionProps) {
   return (
     <>
-      <section id={service.slug.current} className="relative z-15 bg-white/40 rounded-xl w-[90%] mx-auto mb-15 drop-shadow-lg" style={{ scrollMarginTop: '7rem' }}>
-        <h2 className="text-3xl font-semibold mb-2 text-black text-center pt-4">{service.name}</h2>
+      <section id={service.slug.current} className="relative z-15 w-[90%] mx-auto mb-15" style={{ scrollMarginTop: '7rem' }}>
+        <h2 className="text-3xl font-semibold mb-2 text-black text-center pt-4 bg-white/40 blur-sm"></h2>
         <div className="flex justify-between">
           <div className="w-full md:w-1/3 p-4">
             {service && <>

@@ -1,7 +1,7 @@
 import { client } from "@/sanity/lib/client";
 import { LogoComponent } from "./logo";
 import { Submenu } from "./ui/submenu";
-import { Service } from "./service_section";
+import { Service } from "../interfaces";
 
 interface HeaderProps {
   services: Service[]

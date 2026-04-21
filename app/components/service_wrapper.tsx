@@ -16,4 +16,4 @@ export function ServiceWrapper(props: ServiceWrapperProps) {
         {isOpen && <ServiceSectionExpanded {...props} setIsOpen={setIsOpen} />}
         <ServiceSection {...props} setIsOpen={setIsOpen} />
     </>
-}   
+}

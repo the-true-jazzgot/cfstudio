@@ -37,13 +37,13 @@ export async function TrustedUs() {
         <div className="logo-marquee-wrapper overflow-hidden">
           <div className="logo-marquee animate-marquee">
             {marqueeLogos.map((logo, index) => {
-              const imageUrl = urlFor(logo.picture).auto('format').width(300).height(200).url()
+              const imageUrl = urlFor(logo.picture).auto('format').height(200).url()
               return (
-                <div key={`${logo._key}-${index}`} className="logo-marquee-item flex min-w-[300px] items-center justify-center px-4 py-2">
+                <div key={`${logo._key}-${index}`} className="logo-marquee-item flex min-w-max items-center justify-center px-4 py-2">
                   <img
                     src={imageUrl}
                     alt={logo.pictureDescription || 'Trusted logo'}
-                    className="h-[200px] w-[300px] object-contain"
+                    className="h-[200px] w-auto object-contain"
                   />
                 </div>
               )

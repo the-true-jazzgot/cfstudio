@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { Video } from "./video";
+import { Video } from "../elements/video";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { div, i } from "motion/react-client";
 

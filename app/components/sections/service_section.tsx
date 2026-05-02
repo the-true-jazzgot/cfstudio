@@ -1,6 +1,6 @@
 import { PortableText } from '@portabletext/react'
-import { ImageCarousel } from './ui/image_carousel'
-import { Service } from '../interfaces'
+import { ImageCarousel } from '../ui/image_carousel'
+import { Service } from '../../interfaces'
 
 interface ServiceSectionProps {
   service: Service;

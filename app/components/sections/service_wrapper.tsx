@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ServiceSectionExpanded } from "./service_section_expanded";
 import { ServiceSection } from "./service_section";
-import { Service } from "../interfaces";
+import { Service } from "../../interfaces";
 
 interface ServiceWrapperProps {
     service: Service;

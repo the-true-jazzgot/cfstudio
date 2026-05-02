@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import { client } from "../../sanity/lib/client";
-import { urlFor } from "../../sanity/lib/image";
+import { client } from "../../../sanity/lib/client";
+import { urlFor } from "../../../sanity/lib/image";
 
 export async function LogoComponent() {
     const query = `*[_type == "generalSettings"][0]{logo, altforlogo}`;

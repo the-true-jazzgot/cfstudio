@@ -1,32 +1,24 @@
-import { client } from "@/sanity/lib/client";
-import { Header } from "./components/header";
-import { Hero } from "./components/hero";
-import { ServiceSection } from "./components/service_section";
-import { TrustedUs } from "./components/trusted_us";
-import { Appear } from "./components/animations/appear";
-import { Service } from "./interfaces";
-import { ServiceWrapper } from "./components/service_wrapper";
+import Navbar from "./components/elements/navbar";
+import { Hero } from "./components/sections/hero";
+import ServicesGrid from "./components/sections/services-grid";
+import AboutSection from "./components/sections/about-section";
+import StatsSection from "./components/sections/stats-section";
+import PortfolioGallery from "./components/sections/portfolio-galery";
+import ContactSection from "./components/sections/contact-section";
+import { TrustedUs } from "./components/sections/trusted_us";
 
-export default async function Home() {
-  const query = `*[_type == "services"][]{_id, name, description, slug, gallery[]{picture{asset->{_id, metadata{dimensions{width,height}}}}, pictureDescription}}`;
-  const services = await client.fetch(query);
-
-  if (!services) {
-    throw new Error("Failed to fetch services");
-  }
-
-  return <>
-    <Header services={services} />
-    <Hero />
-    <div className="w-full h-screen">
-    </div>
-    <div className="w-full h-[80vh]">
-    </div>
-    <TrustedUs />
-    {services.map((service: Service) => (
-      <Appear key={service._id}>
-        <ServiceWrapper service={service} key={service._id} />
-      </Appear>
-    ))}
-  </>;
+export default function HomePage() {
+  return (
+    <main className="bg-white text-gray-800">
+      <Navbar />
+      <Hero />
+      <div className="h-screen w-full"></div>
+      <TrustedUs />
+      <ServicesGrid />
+      <AboutSection />
+      <StatsSection />
+      <PortfolioGallery />
+      <ContactSection />
+    </main>
+  );
 }

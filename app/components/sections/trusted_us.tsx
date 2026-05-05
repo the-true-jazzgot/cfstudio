@@ -29,7 +29,7 @@ export async function TrustedUs() {
   const marqueeLogos = [...baseLogos, ...baseLogos];
 
   return (
-    <section className="w-full overflow-hidden py-8 z-10 border-y-2 border-white/20 backdrop-blur-sm mb-10 ">
+    <section className="w-full overflow-hidden py-8 z-10 border-y-2 border-white/20 backdrop-blur-sm bg-white/50">
       <div className="px-4 text-center pb-2">
         <h2 className="text-5xl font-bold text-white text-shadow-md">Zaufali nam</h2>
       </div>

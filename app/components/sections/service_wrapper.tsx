@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import { ServiceSectionExpanded } from "./service_section_expanded";
+import { ServiceSectionExpanded } from "./services-grid/service_section_expanded";
 import { ServiceSection } from "./service_section";
 import { Service } from "../../interfaces";
 

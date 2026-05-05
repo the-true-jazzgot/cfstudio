@@ -3,11 +3,15 @@
 import { useMemo } from "react";
 import { Video } from "../elements/video";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { div, i } from "motion/react-client";
 
 export function Hero() {
   const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0, 1], [2, 70]);
+  const getProportion = useMemo(() => {
+    if (typeof window === "undefined") return 1;
+    const portrait = window.matchMedia("(orientation: portrait)").matches;
+    return portrait ? 0.5 : 1;
+  }, []);
+  const scale = useTransform(scrollYProgress, [0, 1], [8*getProportion, 90]);
 
   const imageProps = useMemo(
     () => ({
@@ -17,9 +21,8 @@ export function Hero() {
       style: { scale },
       initial: { x: -200 },
       animate: { x: 0 },
-    }),
-    [scale]
-  );
+    }
+  ), [scale]);
 
   return (
     <div className="fixed w-full h-screen overflow-hidden top-0 left-0">

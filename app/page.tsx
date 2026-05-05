@@ -1,6 +1,6 @@
 import Navbar from "./components/elements/navbar";
 import { Hero } from "./components/sections/hero";
-import ServicesGrid from "./components/sections/services-grid";
+import ServicesGrid from "./components/sections/services-grid/services-grid";
 import AboutSection from "./components/sections/about-section";
 import StatsSection from "./components/sections/stats-section";
 import PortfolioGallery from "./components/sections/portfolio-galery";

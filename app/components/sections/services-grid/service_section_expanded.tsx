@@ -1,4 +1,4 @@
-import { Service } from "../interfaces";
+import { Service } from "../../../interfaces";
 import { urlFor } from "@/sanity/lib/image";
 
 interface ServiceSectionExpandedProps {

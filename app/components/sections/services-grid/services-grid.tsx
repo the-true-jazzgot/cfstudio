@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
 import { Service } from "@/app/interfaces";
-import ServiceGridItem from "./services-grid/service-grid-item";
-import { ServiceSectionExpanded } from "./services-grid/service_section_expanded";
+import ServiceGridItem from "./service-grid-item";
+import { ServiceSectionExpanded } from "./service_section_expanded";
+import { AnimatePresence } from "motion/react";
 
 export default function ServicesGrid() {
   const [services, setServices] = useState<Service[]>([]);
@@ -47,12 +48,14 @@ export default function ServicesGrid() {
           />
         ))}
       </section>
-      {selectedService && (
-        <ServiceSectionExpanded
-          service={selectedService}
-          setIsOpen={(isOpen) => !isOpen && setSelectedService(null)}
-        />
-      )}
+      <AnimatePresence>
+        {selectedService && (
+          <ServiceSectionExpanded
+            service={selectedService}
+            setIsOpen={(isOpen) => !isOpen && setSelectedService(null)}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 }

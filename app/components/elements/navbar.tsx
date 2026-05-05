@@ -2,7 +2,7 @@ import { LogoComponent } from "./logo";
 
 export default function Navbar() {
   return (
-    <header className="bg-white shadow-sm z-10 sticky top-0">
+    <header className="sticky top-0 z-50 shadow-lg backdrop-blur-sm bg-white/50 border-b-2 border-white/20">
       <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
         <LogoComponent />
 

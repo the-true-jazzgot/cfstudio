@@ -5,7 +5,6 @@ import { client } from "@/sanity/lib/client";
 import { Service } from "@/app/interfaces";
 import ServiceGridItem from "./service-grid-item";
 import { ServiceSectionExpanded } from "./service_section_expanded";
-import { AnimatePresence } from "motion/react";
 
 export default function ServicesGrid() {
   const [services, setServices] = useState<Service[]>([]);
@@ -20,7 +19,8 @@ export default function ServicesGrid() {
           name,
           slug,
           description,
-          gallery
+          gallery,
+          icon
         }`;
         const data = await client.fetch(query);
         setServices(data);
@@ -38,7 +38,7 @@ export default function ServicesGrid() {
 
   return (
     <>
-      <section className="grid grid-cols-2 md:grid-cols-4 z-10 relative">
+      <section className="grid grid-cols-2 md:grid-cols-4 z-10 relative bg-white" id="services">
         {services.map((service, index) => (
           <ServiceGridItem
             key={service._id}
@@ -48,14 +48,12 @@ export default function ServicesGrid() {
           />
         ))}
       </section>
-      <AnimatePresence>
-        {selectedService && (
-          <ServiceSectionExpanded
-            service={selectedService}
-            setIsOpen={(isOpen) => !isOpen && setSelectedService(null)}
-          />
-        )}
-      </AnimatePresence>
+      {selectedService && (
+        <ServiceSectionExpanded
+          service={selectedService}
+          setIsOpen={(isOpen) => !isOpen && setSelectedService(null)}
+        />
+      )}
     </>
   );
 }

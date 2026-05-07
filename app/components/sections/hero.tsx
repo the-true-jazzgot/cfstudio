@@ -9,7 +9,7 @@ export function Hero() {
   const getProportion = useMemo(() => {
     if (typeof window === "undefined") return 1;
     const portrait = window.matchMedia("(orientation: portrait)").matches;
-    return portrait ? 0.5 : 1;
+    return portrait ? 0.4 : 1;
   }, []);
   const scale = useTransform(scrollYProgress, [0, 1], [8*getProportion, 90]);
 

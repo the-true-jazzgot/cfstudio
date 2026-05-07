@@ -24,6 +24,15 @@ export const servicesType = defineType({
       description: 'URL-friendly identifier for the service',
     }),
     defineField({
+      name: 'icon',
+      type: 'image',
+      title: 'Service Icon',
+      options: {
+        hotspot: true,
+      },
+      description: 'Icon for the service, preferably in SVG format',
+    }),
+    defineField({
       name: 'description',
       type: 'array',
       title: 'Description',

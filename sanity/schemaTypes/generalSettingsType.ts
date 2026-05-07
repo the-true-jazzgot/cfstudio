@@ -32,5 +32,15 @@ export const generalSettingsType = defineType({
       title: 'Email Address',
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'welcomePicture',
+      type: 'image',
+      description: 'Picture that will be displayed on the welcome section',
+      validation: (Rule) => Rule.required(),
+        title: 'Welcome Picture',
+        options: {
+          hotspot: true,
+        }
+    }),
   ],
 })

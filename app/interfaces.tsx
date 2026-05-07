@@ -24,4 +24,9 @@ export interface Service {
   };
   description: PortableTextBlock[];
   gallery: ServiceImage[];
+  icon: {
+    asset: {
+      _id: string;
+    };
+  };
 }

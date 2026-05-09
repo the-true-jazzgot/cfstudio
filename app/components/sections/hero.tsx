@@ -1,17 +1,31 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Video } from "../elements/video";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export function Hero() {
   const { scrollYProgress } = useScroll();
-  const getProportion = useMemo(() => {
-    if (typeof window === "undefined") return 1;
-    const portrait = window.matchMedia("(orientation: portrait)").matches;
-    return portrait ? 0.4 : 1;
+  const [isPortrait, setIsPortrait] = useState(false);
+
+  useEffect(() => {
+    const updateOrientation = () => {
+      setIsPortrait(window.matchMedia("(orientation: portrait)").matches);
+    };
+
+    updateOrientation();
+    window.addEventListener("resize", updateOrientation);
+    window.addEventListener("orientationchange", updateOrientation);
+
+    return () => {
+      window.removeEventListener("resize", updateOrientation);
+      window.removeEventListener("orientationchange", updateOrientation);
+    };
   }, []);
-  const scale = useTransform(scrollYProgress, [0, 1], [8*getProportion, 90]);
+
+  const landscapeScale = useTransform(scrollYProgress, [0, 1], [8, 90]);
+  const portraitScale = useTransform(scrollYProgress, [0, 1], [3.2, 90]);
+  const scale = isPortrait ? portraitScale : landscapeScale;
 
   const imageProps = useMemo(
     () => ({

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'motion/react'
 import { urlFor } from '@/sanity/lib/image'
@@ -32,24 +32,24 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
 
   const totalImages = images.length
 
-  if (totalImages === 0) {
-    return <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center">No images available</div>
-  }
-
-  const next = () => {
+  const next = useCallback(() => {
     setCurrent((prev) => (prev + 1) % totalImages)
-  }
+  }, [totalImages])
 
-  const prev = () => {
+  const prev = useCallback(() => {
     setCurrent((prev) => (prev - 1 + totalImages) % totalImages)
-  }
+  }, [totalImages])
 
   useEffect(() => {
-    if (!isAutoPlay) return
+    if (!isAutoPlay || totalImages === 0) return
 
     const timer = setInterval(next, 4000)
     return () => clearInterval(timer)
-  }, [isAutoPlay, totalImages])
+  }, [isAutoPlay, next, totalImages])
+
+  if (totalImages === 0) {
+    return <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center">No images available</div>
+  }
 
   const currentImage = images[current]
   const imageUrl = urlFor(currentImage.picture).url()

@@ -2,7 +2,7 @@ const items = Array.from({ length: 8 });
 
 export default function PortfolioGallery() {
   return (
-    <section className="py-20 z-10 relative">
+    <section id="portfolio" className="py-20 z-10 relative">
       <h2 className="text-center text-4xl font-light mb-14">
         ZOBACZ NASZE NAJNOWSZE PROJEKTY
       </h2>

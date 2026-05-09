@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { client } from '@/sanity/lib/client'
 import { urlFor } from '@/sanity/lib/image'
 
@@ -29,9 +30,9 @@ export async function TrustedUs() {
   const marqueeLogos = [...baseLogos, ...baseLogos];
 
   return (
-    <section className="w-full overflow-hidden py-12 z-10 border-y-2 border-white/20 backdrop-blur-sm bg-white">
+    <section className="w-full overflow-hidden py-12 z-10 border-y-2 border-white/20 backdrop-blur-sm bg-white/50">
       <div className="px-4 text-center pb-6">
-        <h2 className="text-5xl font-bold text-blaclk text-shadow-md">Zaufali nam</h2>
+        <h2 className="text-5xl font-bold text-black text-shadow-md">Zaufali nam</h2>
       </div>
       <div>
         <div className="logo-marquee-wrapper overflow-hidden">
@@ -40,9 +41,12 @@ export async function TrustedUs() {
               const imageUrl = urlFor(logo.picture).auto('format').height(200).url()
               return (
                 <div key={`${logo._key}-${index}`} className="logo-marquee-item flex min-w-max items-center justify-center px-4 py-2">
-                  <img
+                  <Image
                     src={imageUrl}
                     alt={logo.pictureDescription || 'Trusted logo'}
+                    width={300}
+                    height={200}
+                    unoptimized
                     className="h-[200px] w-auto object-contain"
                   />
                 </div>

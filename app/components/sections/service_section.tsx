@@ -1,4 +1,5 @@
-import { PortableText } from '@portabletext/react'
+import { PortableText, type PortableTextComponents } from '@portabletext/react'
+import type { ReactNode } from 'react'
 import { ImageCarousel } from '../ui/image_carousel'
 import { Service } from '../../interfaces'
 
@@ -8,15 +9,15 @@ interface ServiceSectionProps {
 }
 
 export function ServiceSection({ service, setIsOpen }: ServiceSectionProps) {
-  const portableTextComponents = {
+  const portableTextComponents: PortableTextComponents = {
     block: {
-      h2: ({ children }: any) => (
+      h2: ({ children }: { children?: ReactNode }) => (
         <h2 className="text-2xl font-bold text-black mt-4 mb-2">{children}</h2>
       ),
-      h3: ({ children }: any) => (
+      h3: ({ children }: { children?: ReactNode }) => (
         <h3 className="text-xl font-semibold text-black mt-3 mb-2">{children}</h3>
       ),
-      normal: ({ children }: any) => (
+      normal: ({ children }: { children?: ReactNode }) => (
         <p className="text-base text-black">{children}</p>
       ),
     },

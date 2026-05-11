@@ -102,3 +102,33 @@ body {
     transform: translateX(-50%);
   }
 }
+
+.scroll-chevron {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  border-right: 0.25rem solid white;
+  border-bottom: 0.25rem solid white;
+  transform: rotate(45deg);
+  filter: drop-shadow(0 0.25rem 0.5rem rgb(0 0 0 / 0.35));
+  animation: scroll-chevron-jump 1.6s ease-in-out infinite;
+}
+
+.scroll-chevron-back {
+  opacity: 0.42;
+  animation-delay: 0.4s;
+}
+
+.scroll-chevron-front {
+  opacity: 0.9;
+}
+
+@keyframes scroll-chevron-jump {
+  0%,
+  100% {
+    transform: translateY(0) rotate(45deg);
+  }
+  50% {
+    transform: translateY(0.65rem) rotate(45deg);
+  }
+}

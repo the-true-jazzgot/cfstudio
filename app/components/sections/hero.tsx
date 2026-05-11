@@ -26,6 +26,7 @@ export function Hero() {
   const landscapeScale = useTransform(scrollYProgress, [0, 1], [8, 90]);
   const portraitScale = useTransform(scrollYProgress, [0, 1], [3.2, 90]);
   const scale = isPortrait ? portraitScale : landscapeScale;
+  const chevronOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
 
   const imageProps = useMemo(
     () => ({
@@ -43,6 +44,14 @@ export function Hero() {
         <div className="relative w-full h-screen">
         <Video />
         <motion.img {...imageProps} />
+        <motion.div
+          className="pointer-events-none fixed bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1"
+          style={{ opacity: chevronOpacity }}
+          aria-hidden="true"
+        >
+          <span className="scroll-chevron scroll-chevron-back" />
+          <span className="scroll-chevron scroll-chevron-front" />
+        </motion.div>
         </div>
     </div>
   );

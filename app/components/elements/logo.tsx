@@ -17,7 +17,7 @@ export async function LogoComponent() {
         <Image
             src={logoImage}
             alt={altText}
-            width={300}
+            width={220}
             height={100}
             unoptimized
             className="h-auto"

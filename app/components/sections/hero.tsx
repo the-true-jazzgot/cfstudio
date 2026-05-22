@@ -7,6 +7,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 export function Hero() {
   const { scrollYProgress } = useScroll();
   const [isPortrait, setIsPortrait] = useState(false);
+  const [showChevron, setShowChevron] = useState(true);
 
   useEffect(() => {
     const updateOrientation = () => {
@@ -20,6 +21,21 @@ export function Hero() {
     return () => {
       window.removeEventListener("resize", updateOrientation);
       window.removeEventListener("orientationchange", updateOrientation);
+    };
+  }, []);
+
+  useEffect(() => {
+    const updateChevronVisibility = () => {
+      setShowChevron(window.scrollY < window.innerHeight * 0.75);
+    };
+
+    updateChevronVisibility();
+    window.addEventListener("scroll", updateChevronVisibility, { passive: true });
+    window.addEventListener("resize", updateChevronVisibility);
+
+    return () => {
+      window.removeEventListener("scroll", updateChevronVisibility);
+      window.removeEventListener("resize", updateChevronVisibility);
     };
   }, []);
 
@@ -44,18 +60,20 @@ export function Hero() {
         <div className="relative w-full h-screen">
         <Video />
         <motion.img {...imageProps} />
-        <motion.div
-          className="pointer-events-none fixed bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1"
-          style={{ opacity: chevronOpacity }}
-          aria-hidden="true"
-        >
-          <svg className="scroll-chevron scroll-chevron-back" viewBox="0 0 64 40" fill="none">
-            <path d="M8 8L32 32L56 8" />
-          </svg>
-          <svg className="scroll-chevron scroll-chevron-front" viewBox="0 0 64 40" fill="none">
-            <path d="M8 8L32 32L56 8" />
-          </svg>
-        </motion.div>
+        {showChevron && (
+          <motion.div
+            className="pointer-events-none absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center"
+            style={{ opacity: chevronOpacity }}
+            aria-hidden="true"
+          >
+            <svg className="scroll-chevron scroll-chevron-back" viewBox="0 0 64 40" fill="none">
+              <path d="M8 8L32 32L56 8" />
+            </svg>
+            <svg className="scroll-chevron scroll-chevron-front" viewBox="0 0 64 40" fill="none">
+              <path d="M8 8L32 32L56 8" />
+            </svg>
+          </motion.div>
+        )}
         </div>
     </div>
   );

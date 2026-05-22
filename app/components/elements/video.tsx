@@ -42,6 +42,7 @@ export function Video() {
     <video
       key={src}
       ref={videoRef}
+      aria-hidden="true"
       autoPlay
       playsInline
       muted

@@ -58,25 +58,15 @@ export const generalSettingsType = defineType({
         {
           type: 'block',
           styles: [
-            {title: 'Standardowy', value: 'normal'},
-            {title: 'Duży nagłówek', value: 'headingLarge'},
-            {title: 'Największy nagłówek', value: 'headingHuge'},
-          ],
-          fields: [
-            defineField({
-              name: 'alignment',
-              type: 'string',
-              title: 'Wyrównanie tekstu',
-              options: {
-                list: [
-                  {title: 'Do lewej', value: 'left'},
-                  {title: 'Do środka', value: 'center'},
-                  {title: 'Do prawej', value: 'right'},
-                ],
-                layout: 'radio',
-              },
-              initialValue: 'left',
-            }),
+            {title: 'Standardowy - do lewej', value: 'normal'},
+            {title: 'Standardowy - do środka', value: 'normalCenter'},
+            {title: 'Standardowy - do prawej', value: 'normalRight'},
+            {title: 'Duży nagłówek - do lewej', value: 'headingLarge'},
+            {title: 'Duży nagłówek - do środka', value: 'headingLargeCenter'},
+            {title: 'Duży nagłówek - do prawej', value: 'headingLargeRight'},
+            {title: 'Największy nagłówek - do lewej', value: 'headingHuge'},
+            {title: 'Największy nagłówek - do środka', value: 'headingHugeCenter'},
+            {title: 'Największy nagłówek - do prawej', value: 'headingHugeRight'},
           ],
           lists: [],
           marks: {

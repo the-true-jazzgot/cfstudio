@@ -15,9 +15,11 @@ export default function ServiceGridItem({ service, index, columnCount, onOpen }:
   const isLight = (row + column) % 2 === 1;
 
   return (
-    <div
+    <button
+        type="button"
         onClick={() => onOpen(service)}
         className="service-grid-item aspect-square p-8 text-center text-white cursor-pointer transition-transform hover:scale-105 flex flex-col items-center justify-center"
+        aria-label={`Otwórz usługę: ${service.name}`}
         style={{
           backgroundColor: isLight
             ? "color-mix(in srgb, var(--brand-primary) 75%, white)"
@@ -35,6 +37,6 @@ export default function ServiceGridItem({ service, index, columnCount, onOpen }:
             />
         )}
         <h3 className="text-sm tracking-[0.3em]">{service.name}</h3>
-    </div>
+    </button>
   );
 }

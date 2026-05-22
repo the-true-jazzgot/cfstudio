@@ -52,6 +52,7 @@ export default function PortfolioGalleryClient({ title, projects }: PortfolioGal
               key={project._key}
               type="button"
               className="group relative aspect-square overflow-hidden bg-gray-200 text-left transition-transform hover:scale-[1.03]"
+              aria-label={`Otwórz projekt: ${project.title || "projekt portfolio"}`}
               onClick={() => setSelectedProject(project)}
             >
               <Image

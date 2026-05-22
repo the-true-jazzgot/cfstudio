@@ -16,22 +16,7 @@ interface WelcomeSettings {
 
 interface WelcomeBlockProps {
   children?: ReactNode;
-  value?: PortableTextBlock & {
-    alignment?: "left" | "center" | "right";
-  };
 }
-
-const alignmentClass = (alignment?: "left" | "center" | "right") => {
-  if (alignment === "center") {
-    return "text-center";
-  }
-
-  if (alignment === "right") {
-    return "text-right";
-  }
-
-  return "text-left";
-};
 
 const createWelcomeRichTextFallback = (title: string): PortableTextBlock[] => title
   .split("\n")
@@ -52,14 +37,32 @@ const createWelcomeRichTextFallback = (title: string): PortableTextBlock[] => ti
 
 const welcomeComponents: PortableTextComponents = {
   block: {
-    normal: ({ children, value }: WelcomeBlockProps) => (
-      <p className={`text-3xl font-semibold leading-tight text-white md:text-5xl ${alignmentClass(value?.alignment)}`}>{children}</p>
+    normal: ({ children }: WelcomeBlockProps) => (
+      <p className="text-left text-3xl font-semibold leading-tight text-white md:text-5xl">{children}</p>
     ),
-    headingLarge: ({ children, value }: WelcomeBlockProps) => (
-      <p className={`text-4xl font-semibold leading-tight text-white md:text-6xl ${alignmentClass(value?.alignment)}`}>{children}</p>
+    normalCenter: ({ children }: WelcomeBlockProps) => (
+      <p className="text-center text-3xl font-semibold leading-tight text-white md:text-5xl">{children}</p>
     ),
-    headingHuge: ({ children, value }: WelcomeBlockProps) => (
-      <p className={`text-5xl font-bold leading-tight text-white md:text-7xl ${alignmentClass(value?.alignment)}`}>{children}</p>
+    normalRight: ({ children }: WelcomeBlockProps) => (
+      <p className="text-right text-3xl font-semibold leading-tight text-white md:text-5xl">{children}</p>
+    ),
+    headingLarge: ({ children }: WelcomeBlockProps) => (
+      <p className="text-left text-4xl font-semibold leading-tight text-white md:text-6xl">{children}</p>
+    ),
+    headingLargeCenter: ({ children }: WelcomeBlockProps) => (
+      <p className="text-center text-4xl font-semibold leading-tight text-white md:text-6xl">{children}</p>
+    ),
+    headingLargeRight: ({ children }: WelcomeBlockProps) => (
+      <p className="text-right text-4xl font-semibold leading-tight text-white md:text-6xl">{children}</p>
+    ),
+    headingHuge: ({ children }: WelcomeBlockProps) => (
+      <p className="text-left text-5xl font-bold leading-tight text-white md:text-7xl">{children}</p>
+    ),
+    headingHugeCenter: ({ children }: WelcomeBlockProps) => (
+      <p className="text-center text-5xl font-bold leading-tight text-white md:text-7xl">{children}</p>
+    ),
+    headingHugeRight: ({ children }: WelcomeBlockProps) => (
+      <p className="text-right text-5xl font-bold leading-tight text-white md:text-7xl">{children}</p>
     ),
   },
   marks: {

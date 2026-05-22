@@ -43,6 +43,9 @@ export function Submenu({isOpen, items, name, className, menuClassName, itemClas
         >
         <motion.button 
             className={`relative inline-flex items-center gap-1.5 align-middle ${className ?? "p-2 border-white border-3 bg-black/50 rounded-xl cursor-pointer"}`}
+            type="button"
+            aria-expanded={isSubmenuOpen}
+            aria-haspopup="menu"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}>
             <span>{name}</span>
@@ -57,13 +60,14 @@ export function Submenu({isOpen, items, name, className, menuClassName, itemClas
         </motion.button>
         <AnimatePresence>
             {isSubmenuOpen && <motion.ul 
+                role="menu"
                 className={menuClassName ?? "absolute top-full mt-2 left-1/2 transform -translate-x-1/2 bg-black/50 gradient-a border-3 rounded-xl w-[400px]"}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}>
                 {items.map((item) => (
-                    <li key={item.link} className={itemClassName ?? "px-4 py-2 hover:bg-gray-200/30 cursor-pointer"}>
-                        <a href={item.link} onClick={(event) => handleAnchorScroll(event, item.link)}>{item.name}</a>
+                    <li key={item.link} role="none" className={itemClassName ?? "px-4 py-2 hover:bg-gray-200/30 cursor-pointer"}>
+                        <a role="menuitem" href={item.link} onClick={(event) => handleAnchorScroll(event, item.link)}>{item.name}</a>
                     </li>
                 ))}
             </motion.ul>}  

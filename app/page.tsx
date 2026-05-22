@@ -23,6 +23,7 @@ export default async function HomePage() {
 
   return (
     <main className="bg-white text-gray-800">
+      <h1 className="sr-only">CFS - kreatywne rozwiązania dla biznesu</h1>
       <Navbar services={services} />
       <Hero />
       <div className="h-[180vh] w-full"></div>

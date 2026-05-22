@@ -10,6 +10,8 @@ import { TrustedUs } from "./components/sections/trusted_us";
 import WelcomeSection from "./components/sections/welcome-section";
 import { Service } from "./interfaces";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   const servicesQuery = `*[_type == "services"] {
     _id,

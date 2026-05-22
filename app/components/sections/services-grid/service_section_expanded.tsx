@@ -37,7 +37,7 @@ export function ServiceSectionExpanded({ service, setIsOpen }: ServiceSectionExp
           <button
             type="button"
             aria-label="Zamknij podglad uslugi"
-            className="sticky top-0 z-[2] -mt-10 -mr-7 ml-auto flex h-11 w-11 items-center justify-center text-white drop-shadow-lg transition-opacity hover:opacity-75 md:-mt-14 md:-mr-10"
+            className="sticky top-0 z-[2] -mt-10 -mr-7 ml-auto flex h-11 w-11 items-center justify-center text-black drop-shadow-lg transition-opacity hover:opacity-75 md:-mt-14 md:-mr-10"
             onClick={() => setIsOpen(false)}
           >
             <span className="absolute h-[2px] w-5 rotate-45 rounded-full bg-current" />

@@ -18,6 +18,7 @@ export default function ServiceGridItem({ service, index, columnCount, onOpen }:
     <button
         type="button"
         onClick={() => onOpen(service)}
+        data-service-url={`/uslugi/${service.slug.current}`}
         className="service-grid-item aspect-square p-8 text-center text-white cursor-pointer transition-transform hover:scale-105 flex flex-col items-center justify-center"
         aria-label={`Otwórz usługę: ${service.name}`}
         style={{

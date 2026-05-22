@@ -81,7 +81,7 @@ export default function PortfolioGalleryClient({ title, projects }: PortfolioGal
             <button
               type="button"
               aria-label="Zamknij projekt"
-              className="sticky top-24 z-[1010] -mb-11 ml-auto flex h-11 w-11 items-center justify-center text-white drop-shadow-lg transition-opacity hover:opacity-75"
+              className="sticky top-24 z-[1010] -mb-11 ml-auto flex h-11 w-11 items-center justify-center text-black drop-shadow-lg transition-opacity hover:opacity-75"
               onClick={() => setSelectedProject(null)}
             >
               <span className="absolute h-[2px] w-5 rotate-45 rounded-full bg-current" />

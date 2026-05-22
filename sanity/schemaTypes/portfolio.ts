@@ -30,6 +30,13 @@ export const portfolioType = defineType({
               validation: (Rule) => Rule.required(),
             }),
             defineField({
+              name: "imageAlt",
+              type: "string",
+              title: "Tekst alternatywny obrazu",
+              description: "Krótki opis tego, co widać na obrazie. Ważne dla SEO i dostępności.",
+              validation: (Rule) => Rule.required().max(160),
+            }),
+            defineField({
               name: "title",
               type: "string",
               title: "Nazwa projektu",

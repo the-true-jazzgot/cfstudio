@@ -25,6 +25,7 @@ interface SeoSettings {
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: SanityImageSource;
+  ogImageAlt?: string;
 }
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -35,7 +36,8 @@ export async function generateMetadata(): Promise<Metadata> {
       seoKeywords,
       ogTitle,
       ogDescription,
-      ogImage
+      ogImage,
+      ogImageAlt
     }`
   );
 
@@ -66,7 +68,7 @@ export async function generateMetadata(): Promise<Metadata> {
               url: ogImage,
               width: 1200,
               height: 630,
-              alt: ogTitle,
+              alt: settings?.ogImageAlt || ogTitle,
             },
           ]
         : undefined,

@@ -16,6 +16,7 @@ export default async function PortfolioGallery() {
         _key,
         title,
         description,
+        imageAlt,
         image{asset->{_id, metadata{dimensions{width,height}}}}
       }
     }`

@@ -10,6 +10,7 @@ const fallbackWelcomeTitle = "KREATYWNE\nROZWIAZANIA\nDLA BIZNESU";
 
 interface WelcomeSettings {
   welcomePicture?: SanityImageSource;
+  welcomePictureAlt?: string;
   welcomeTitle?: string;
   welcomeRichText?: PortableTextBlock[];
 }
@@ -76,7 +77,7 @@ const welcomeComponents: PortableTextComponents = {
 };
 
 export default async function WelcomeSection() {
-  const query = `*[_type == "generalSettings"][0]{welcomePicture, welcomeTitle, welcomeRichText}`;
+  const query = `*[_type == "generalSettings"][0]{welcomePicture, welcomePictureAlt, welcomeTitle, welcomeRichText}`;
   const settings = await client.fetch<WelcomeSettings>(query);
 
   const welcomeImage = settings?.welcomePicture
@@ -97,7 +98,7 @@ export default async function WelcomeSection() {
         {welcomeImage && (
           <Image
             src={welcomeImage}
-            alt="Welcome picture"
+            alt={settings?.welcomePictureAlt || ""}
             width={600}
             height={400}
             className="h-full w-full object-cover"

@@ -81,6 +81,12 @@ export const generalSettingsType = defineType({
       },
     }),
     defineField({
+      name: 'ogImageAlt',
+      type: 'string',
+      title: 'Social media - tekst alternatywny obrazu',
+      validation: (Rule) => Rule.max(160),
+    }),
+    defineField({
       name: 'welcomePicture',
       type: 'image',
       description: 'Obraz wyświetlany w sekcji powitalnej',
@@ -89,6 +95,12 @@ export const generalSettingsType = defineType({
         options: {
           hotspot: true,
         }
+    }),
+    defineField({
+      name: 'welcomePictureAlt',
+      type: 'string',
+      title: 'Tekst alternatywny obrazu sekcji powitalnej',
+      validation: (Rule) => Rule.required().max(160),
     }),
     defineField({
       name: 'welcomeTitle',

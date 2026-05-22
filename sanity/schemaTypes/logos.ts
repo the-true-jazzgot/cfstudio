@@ -23,14 +23,22 @@ export const logosType = defineType({
               },
               validation: (Rule) => Rule.required(),
             }),
+            defineField({
+              name: "pictureDescription",
+              type: "string",
+              title: "Tekst alternatywny logo",
+              description: "Najlepiej nazwa firmy lub marki widocznej w logo.",
+              validation: (Rule) => Rule.required().max(120),
+            }),
           ],
           preview: {
             select: {
+              title: "pictureDescription",
               media: "picture",
             },
-            prepare({ media }) {
+            prepare({ title, media }) {
               return {
-                title: "Logo partnera",
+                title: title || "Logo partnera",
                 media,
               };
             },

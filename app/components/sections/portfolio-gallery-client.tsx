@@ -9,6 +9,7 @@ export interface PortfolioProject {
   _key: string;
   title?: string;
   description?: string;
+  imageAlt?: string;
   image: {
     asset: {
       _id: string;
@@ -57,7 +58,7 @@ export default function PortfolioGalleryClient({ title, projects }: PortfolioGal
             >
               <Image
                 src={urlFor(project.image).auto("format").fit("crop").width(700).height(700).url()}
-                alt={project.title || "Portfolio project"}
+                alt={project.imageAlt || project.title || "Projekt portfolio"}
                 fill
                 unoptimized
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
@@ -89,8 +90,8 @@ export default function PortfolioGalleryClient({ title, projects }: PortfolioGal
 
             <figure className="overflow-hidden rounded-md bg-white shadow-2xl">
               <Image
-                src={urlFor(selectedProject.image).auto("format").url()}
-                alt={selectedProject.title || "Portfolio project"}
+              src={urlFor(selectedProject.image).auto("format").url()}
+              alt={selectedProject.imageAlt || selectedProject.title || "Projekt portfolio"}
                 width={selectedProject.image.asset.metadata?.dimensions?.width ?? 1400}
                 height={selectedProject.image.asset.metadata?.dimensions?.height ?? 1000}
                 unoptimized

@@ -1,14 +1,27 @@
-export default function AboutSection() {
+import { client } from "@/sanity/lib/client";
+
+interface About {
+  aboutTitle: string;
+  aboutDescription: string;
+};
+
+export default async function AboutSection() {
+  const settings = await client.fetch<About>(
+    `*[_type == "generalSettings"][0]{aboutTitle, aboutDescription}`
+  );
+  const about = {
+    aboutTitle: settings?.aboutTitle,
+    aboutDescription: settings?.aboutDescription,
+  };
+
   return (
-    <section className="py-32 md:py-44 text-center px-8 z-10 relative">
-      <h2 className="text-4xl md:text-5xl font-bold uppercase mb-8">
-        Welcome to our wonderful world.
+    <section className="relative z-10 flex min-h-screen flex-col items-center justify-center px-8 py-24 text-center">
+      <h2 className="mb-8 max-w-5xl text-4xl font-bold uppercase leading-tight text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.9)] [-webkit-text-stroke:1px_rgba(0,0,0,0.28)] md:text-6xl">
+        {about.aboutTitle}
       </h2>
 
-      <p className="max-w-4xl mx-auto text-gray-500 leading-9 text-lg">
-        We sincerely hope that each and every user entering our website will
-        find exactly what they need. With advanced features and careful design,
-        we build digital experiences for businesses.
+      <p className="mx-auto max-w-4xl text-lg font-medium leading-9 text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] md:text-xl md:leading-10">
+        {about.aboutDescription}
       </p>
     </section>
   );

@@ -42,10 +42,18 @@ export function Submenu({isOpen, items, name, className, menuClassName, itemClas
             onMouseLeave={() => setIsSubmenuOpen(false)}
         >
         <motion.button 
-            className={className ?? "relative p-2 border-white border-3 bg-black/50 rounded-xl cursor-pointer"}
+            className={`relative inline-flex items-center gap-1.5 align-middle ${className ?? "p-2 border-white border-3 bg-black/50 rounded-xl cursor-pointer"}`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}>
             <span>{name}</span>
+            <svg
+                aria-hidden="true"
+                className={`mt-px h-2.5 w-4 flex-none transition-transform duration-200 ${isSubmenuOpen ? "rotate-180" : ""}`}
+                viewBox="0 0 20 12"
+                fill="none"
+            >
+                <path d="M2 2L10 10L18 2" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
         </motion.button>
         <AnimatePresence>
             {isSubmenuOpen && <motion.ul 

@@ -29,23 +29,22 @@ export function ServiceSectionExpanded({ service, setIsOpen }: ServiceSectionExp
       className="fixed inset-0 z-[100] overflow-y-auto bg-gray-950/70 px-4 py-6 backdrop-blur-md md:px-8 md:py-10"
       onClick={() => setIsOpen(false)}
     >
-      <button
-        type="button"
-        aria-label="Zamknij podgląd usługi"
-        className="fixed right-4 top-4 z-[120] flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-gray-950/70 text-white shadow-xl transition-colors hover:bg-gray-950 md:right-8 md:top-8"
-        onClick={() => setIsOpen(false)}
-      >
-        <span className="absolute h-[2px] w-5 rotate-45 rounded-full bg-current" />
-        <span className="absolute h-[2px] w-5 -rotate-45 rounded-full bg-current" />
-      </button>
-
       <section
-        className="relative mx-auto grid w-full max-w-6xl gap-8 overflow-hidden rounded-md bg-white shadow-2xl md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]"
+        className="relative mx-auto grid w-full max-w-6xl gap-8 rounded-md bg-primary shadow-2xl md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:items-start"
         onClick={(event) => event.stopPropagation()}
       >
-        <aside className="bg-primary px-7 py-10 text-white md:sticky md:top-10 md:min-h-[calc(100vh-5rem)] md:px-10 md:py-14">
+        <aside className="bg-primary px-7 py-10 text-white md:sticky md:top-10 md:max-h-[calc(100vh-5rem)] md:min-h-[calc(100vh-5rem)] md:overflow-y-auto md:px-10 md:py-14">
+          <button
+            type="button"
+            aria-label="Zamknij podglad uslugi"
+            className="sticky top-0 z-[2] -mt-10 -mr-7 ml-auto flex h-11 w-11 items-center justify-center text-white drop-shadow-lg transition-opacity hover:opacity-75 md:-mt-14 md:-mr-10"
+            onClick={() => setIsOpen(false)}
+          >
+            <span className="absolute h-[2px] w-5 rotate-45 rounded-full bg-current" />
+            <span className="absolute h-[2px] w-5 -rotate-45 rounded-full bg-current" />
+          </button>
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.35em] text-white/70">
-            Usługa
+            Usluga
           </p>
           <h2 className="text-4xl font-semibold leading-tight md:text-5xl">
             {service.name}
@@ -55,7 +54,7 @@ export function ServiceSectionExpanded({ service, setIsOpen }: ServiceSectionExp
           </div>
         </aside>
 
-        <div className="space-y-5 px-4 pb-6 md:px-0 md:py-6 md:pr-6">
+        <div className="space-y-5 bg-white px-4 pb-6 md:px-0 md:py-6 md:pr-6">
           {service.gallery && service.gallery.length > 0 ? (
             service.gallery.map((image, index) => (
               <figure key={image._key ?? `${image.picture.asset._id}-${index}`} className="overflow-hidden rounded-md bg-gray-100">
@@ -76,7 +75,7 @@ export function ServiceSectionExpanded({ service, setIsOpen }: ServiceSectionExp
             ))
           ) : (
             <div className="flex min-h-72 items-center justify-center rounded-md border border-dashed border-gray-300 bg-gray-50 p-8 text-center text-gray-500">
-              Brak zdjęć dla tej usługi.
+              Brak zdjec dla tej uslugi.
             </div>
           )}
         </div>

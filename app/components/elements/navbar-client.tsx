@@ -14,6 +14,7 @@ interface NavbarClientProps {
 export function NavbarClient({ logo, services }: NavbarClientProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
 
   const serviceItems = useMemo(
     () => services.map((service) => ({
@@ -40,7 +41,10 @@ export function NavbarClient({ logo, services }: NavbarClientProps) {
     };
   }, [isMobileMenuOpen]);
 
-  const closeMobileMenu = () => setIsMobileMenuOpen(false);
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    setIsMobileServicesOpen(false);
+  };
 
   return (
     <header
@@ -69,7 +73,7 @@ export function NavbarClient({ logo, services }: NavbarClientProps) {
 
         <button
           type="button"
-          className="relative md:hidden h-10 w-10 rounded-full border border-gray-300 bg-white/70 text-gray-900"
+          className="relative h-10 w-10 text-gray-900 md:hidden"
           aria-label={isMobileMenuOpen ? "Zamknij menu" : "Otwórz menu"}
           aria-expanded={isMobileMenuOpen}
           onClick={() => setIsMobileMenuOpen((current) => !current)}
@@ -127,19 +131,43 @@ export function NavbarClient({ logo, services }: NavbarClientProps) {
             >
               <a className="py-3" href="#" onClick={closeMobileMenu}>Home</a>
               <div className="py-3">
-                <p className="mb-3 text-xs font-semibold text-gray-400">Co robimy?</p>
-                <div className="flex flex-col gap-1 normal-case tracking-normal">
-                  {serviceItems.map((item) => (
-                    <a
-                      key={item.link}
-                      className="rounded-md px-3 py-2 hover:bg-primary-light"
-                      href={item.link}
-                      onClick={closeMobileMenu}
+                <button
+                  type="button"
+                  className="inline-flex items-center gap-1.5 py-3 text-left uppercase tracking-wide"
+                  aria-expanded={isMobileServicesOpen}
+                  onClick={() => setIsMobileServicesOpen((current) => !current)}
+                >
+                  <span>Co robimy?</span>
+                  <svg
+                    aria-hidden="true"
+                    className={`mt-px h-2.5 w-4 flex-none transition-transform duration-200 ${isMobileServicesOpen ? "rotate-180" : ""}`}
+                    viewBox="0 0 20 12"
+                    fill="none"
+                  >
+                    <path d="M2 2L10 10L18 2" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                <AnimatePresence initial={false}>
+                  {isMobileServicesOpen && (
+                    <motion.div
+                      className="flex flex-col gap-1 overflow-hidden normal-case tracking-normal"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
                     >
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
+                      {serviceItems.map((item) => (
+                        <a
+                          key={item.link}
+                          className="rounded-md px-3 py-2 hover:bg-primary-light"
+                          href={item.link}
+                          onClick={closeMobileMenu}
+                        >
+                          {item.name}
+                        </a>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
               <a className="py-3" href="#portfolio" onClick={closeMobileMenu}>Portfolio</a>
               <a className="py-3" href="#contact" onClick={closeMobileMenu}>Kontakt</a>

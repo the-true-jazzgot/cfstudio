@@ -105,30 +105,34 @@ body {
 
 .scroll-chevron {
   display: block;
-  width: 2rem;
-  height: 2rem;
-  border-right: 0.25rem solid white;
-  border-bottom: 0.25rem solid white;
-  transform: rotate(45deg);
-  filter: drop-shadow(0 0.25rem 0.5rem rgb(0 0 0 / 0.35));
-  animation: scroll-chevron-jump 1.6s ease-in-out infinite;
+  width: 3rem;
+  height: 1.875rem;
+  overflow: visible;
+  stroke: white;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: scroll-chevron-jump 1.9s ease-in-out infinite;
 }
 
 .scroll-chevron-back {
-  opacity: 0.42;
-  animation-delay: 0.4s;
+  margin-bottom: -0.95rem;
+  opacity: 0.32;
+  filter: blur(0.5px) drop-shadow(0 0.45rem 0.9rem rgb(0 0 0 / 0.55));
+  animation-delay: 0.475s;
 }
 
 .scroll-chevron-front {
-  opacity: 0.9;
+  opacity: 0.96;
+  filter: drop-shadow(0 0.25rem 0.55rem rgb(0 0 0 / 0.35));
 }
 
 @keyframes scroll-chevron-jump {
   0%,
   100% {
-    transform: translateY(0) rotate(45deg);
+    transform: translateY(0);
   }
   50% {
-    transform: translateY(0.65rem) rotate(45deg);
+    transform: translateY(1.15rem);
   }
 }

@@ -24,7 +24,7 @@ export function Hero() {
   }, []);
 
   const landscapeScale = useTransform(scrollYProgress, [0, 1], [8, 90]);
-  const portraitScale = useTransform(scrollYProgress, [0, 1], [3.2, 90]);
+  const portraitScale = useTransform(scrollYProgress, [0, 1], [2.2, 90]);
   const scale = isPortrait ? portraitScale : landscapeScale;
   const chevronOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
 
@@ -49,8 +49,12 @@ export function Hero() {
           style={{ opacity: chevronOpacity }}
           aria-hidden="true"
         >
-          <span className="scroll-chevron scroll-chevron-back" />
-          <span className="scroll-chevron scroll-chevron-front" />
+          <svg className="scroll-chevron scroll-chevron-back" viewBox="0 0 64 40" fill="none">
+            <path d="M8 8L32 32L56 8" />
+          </svg>
+          <svg className="scroll-chevron scroll-chevron-front" viewBox="0 0 64 40" fill="none">
+            <path d="M8 8L32 32L56 8" />
+          </svg>
         </motion.div>
         </div>
     </div>

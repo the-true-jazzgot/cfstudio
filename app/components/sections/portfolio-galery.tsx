@@ -1,20 +1,30 @@
-const items = Array.from({ length: 8 });
+import { client } from "@/sanity/lib/client";
+import PortfolioGalleryClient, { type PortfolioProject } from "./portfolio-gallery-client";
 
-export default function PortfolioGallery() {
+const fallbackTitle = "ZOBACZ NASZE NAJNOWSZE PROJEKTY";
+
+interface PortfolioDocument {
+  title?: string;
+  projects?: PortfolioProject[];
+}
+
+export default async function PortfolioGallery() {
+  const portfolio = await client.fetch<PortfolioDocument>(
+    `*[_type == "portfolio"][0]{
+      title,
+      projects[]{
+        _key,
+        title,
+        description,
+        image{asset->{_id, metadata{dimensions{width,height}}}}
+      }
+    }`
+  );
+
   return (
-    <section id="portfolio" className="py-20 z-10 relative">
-      <h2 className="text-center text-4xl font-light mb-14">
-        ZOBACZ NASZE NAJNOWSZE PROJEKTY
-      </h2>
-
-      <div className="grid md:grid-cols-4 gap-2 px-4">
-        {items.map((_, i) => (
-          <div
-            key={i}
-            className="aspect-square bg-gray-200 hover:scale-105 transition-transform"
-          />
-        ))}
-      </div>
-    </section>
+    <PortfolioGalleryClient
+      title={portfolio?.title || fallbackTitle}
+      projects={portfolio?.projects || []}
+    />
   );
 }

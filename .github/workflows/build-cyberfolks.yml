@@ -1,0 +1,60 @@
+name: Build CFStudio for cyber_Folks
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - codex/cyberfolks-migration
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      NODE_ENV: production
+      NEXT_PUBLIC_SANITY_PROJECT_ID: 5n1yg6xs
+      NEXT_PUBLIC_SANITY_DATASET: cfstudio
+      NEXT_PUBLIC_SANITY_API_VERSION: '2026-04-03'
+      NEXT_PUBLIC_SITE_URL: https://cfstudio.pl
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22.23.2'
+          cache: npm
+      - name: Install locked dependencies and check native compiler
+        run: |
+          npm ci --include=dev --ignore-scripts --no-audit --no-fund
+          node -e "require('@next/swc-linux-x64-gnu'); console.log('Native compiler OK')"
+      - run: npm run lint
+      - run: npm run build -- --webpack
+      - name: Check production entry point
+        shell: bash
+        run: |
+          node app.js > /tmp/cfstudio-smoke.log 2>&1 &
+          app_pid=$!
+          trap 'kill "$app_pid" || true' EXIT
+          curl --fail --silent --show-error --retry 15 --retry-connrefused --retry-delay 2 http://127.0.0.1:3000/ > /tmp/cfstudio-home.html
+          curl --fail --silent --show-error http://127.0.0.1:3000/admin > /tmp/cfstudio-studio.html
+          curl --fail --silent --show-error http://127.0.0.1:3000/sitemap.xml > /tmp/cfstudio-sitemap.xml
+      - name: Package Linux build
+        env:
+          BUILD_REVISION: ${{ github.sha }}
+        run: |
+          node -e "const fs=require('node:fs'); const crypto=require('node:crypto'); fs.writeFileSync('cyberfolks-build.json',JSON.stringify({revision:process.env.BUILD_REVISION,node:process.version,platform:process.platform,architecture:process.arch,lockSha256:crypto.createHash('sha256').update(fs.readFileSync('package-lock.json')).digest('hex')},null,2))"
+          tar --exclude='.next/cache' -czf cfstudio-linux-build.tar.gz .next app.js next.config.ts package.json package-lock.json public cyberfolks-build.json
+          sha256sum cfstudio-linux-build.tar.gz > cfstudio-linux-build.sha256
+      - uses: actions/upload-artifact@v7
+        with:
+          name: cfstudio-linux-build-${{ github.sha }}
+          path: |
+            cfstudio-linux-build.tar.gz
+            cfstudio-linux-build.sha256
+          if-no-files-found: error
+          retention-days: 7

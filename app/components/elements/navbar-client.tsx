@@ -19,7 +19,7 @@ export function NavbarClient({ logo, services }: NavbarClientProps) {
   const serviceItems = useMemo(
     () => services.map((service) => ({
       name: service.name,
-      link: `#${service.slug.current}`,
+      link: `/uslugi/${service.slug.current}`,
     })),
     [services]
   );
@@ -64,7 +64,7 @@ export function NavbarClient({ logo, services }: NavbarClientProps) {
             isOpen={false}
             items={serviceItems}
             className="uppercase tracking-wide cursor-pointer"
-            menuClassName="absolute top-full mt-5 left-1/2 -translate-x-1/2 bg-white/95 text-gray-800 shadow-xl border border-gray-200 rounded-md w-[320px] overflow-hidden normal-case tracking-normal"
+            menuClassName="absolute top-full left-1/2 -translate-x-1/2 bg-white/95 text-gray-800 shadow-xl border border-gray-200 rounded-md w-[320px] overflow-hidden normal-case tracking-normal"
             itemClassName="px-5 py-3 hover:bg-primary-light cursor-pointer transition-colors"
           />
           <a href="#portfolio">Portfolio</a>

@@ -33,7 +33,7 @@ export function ServiceSectionExpanded({ service, setIsOpen }: ServiceSectionExp
         className="relative mx-auto grid w-full max-w-6xl gap-8 rounded-md bg-primary shadow-2xl md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:items-start"
         onClick={(event) => event.stopPropagation()}
       >
-        <aside className="bg-primary px-7 py-10 text-white md:sticky md:top-10 md:max-h-[calc(100vh-5rem)] md:min-h-[calc(100vh-5rem)] md:overflow-y-auto md:px-10 md:py-14">
+        <aside className="service-panel-scrollbar bg-primary px-7 py-10 text-white md:sticky md:top-10 md:max-h-[calc(100vh-5rem)] md:min-h-[calc(100vh-5rem)] md:overflow-y-auto md:px-10 md:py-14">
           <button
             type="button"
             aria-label="Zamknij podglad uslugi"

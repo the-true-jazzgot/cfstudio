@@ -19,7 +19,7 @@ export default function ServiceGridItem({ service, index, columnCount, onOpen }:
         type="button"
         onClick={() => onOpen(service)}
         data-service-url={`/uslugi/${service.slug.current}`}
-        className="service-grid-item aspect-square p-8 text-center text-white cursor-pointer transition-transform hover:scale-105 flex flex-col items-center justify-center"
+        className="service-grid-item min-w-0 h-full min-h-full aspect-square p-4 sm:p-8 text-center text-white cursor-pointer transition-[filter] hover:brightness-105 flex flex-col items-center justify-center"
         aria-label={`Otwórz usługę: ${service.name}`}
         style={{
           backgroundColor: isLight
@@ -37,7 +37,7 @@ export default function ServiceGridItem({ service, index, columnCount, onOpen }:
                 className="w-16 h-16 mb-4 mx-auto"
             />
         )}
-        <h3 className="text-sm tracking-[0.3em]">{service.name}</h3>
+        <h3 className="max-w-full text-sm tracking-[0.2em] sm:tracking-[0.3em] [overflow-wrap:anywhere]">{service.name}</h3>
     </button>
   );
 }

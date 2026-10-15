@@ -49,7 +49,7 @@ export function ServiceSectionExpanded({ service, setIsOpen }: ServiceSectionExp
           <h2 className="text-4xl font-semibold leading-tight md:text-5xl">
             {service.name}
           </h2>
-          <div className="mt-8 max-w-prose space-y-5 text-white/90">
+          <div className="service-rich-text mt-8 max-w-prose text-white/90">
             <PortableText value={service.description} components={portableTextComponents} />
           </div>
         </aside>

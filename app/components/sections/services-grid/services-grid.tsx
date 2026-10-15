@@ -55,7 +55,7 @@ export default function ServicesGrid({ services }: ServicesGridProps) {
 
   return (
     <>
-      <section className="grid grid-cols-2 lg:grid-cols-4 z-10 relative bg-white" id="services">
+      <section className="grid grid-cols-2 lg:grid-cols-4 auto-rows-fr gap-0 items-stretch z-10 relative bg-primary" id="services">
         {services.map((service, index) => (
           <ServiceGridItem
             key={service._id}

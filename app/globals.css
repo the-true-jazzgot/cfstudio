@@ -50,6 +50,77 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
+/* Restore Portable Text formatting removed by Tailwind's reset, only in service descriptions. */
+.service-rich-text {
+  overflow-wrap: anywhere;
+  line-height: 1.75;
+}
+
+.service-rich-text > * + * {
+  margin-top: 1.25rem;
+}
+
+.service-rich-text p:empty {
+  min-height: 1lh;
+}
+
+.service-rich-text ul,
+.service-rich-text ol {
+  padding-inline-start: 1.75em;
+  list-style-position: outside;
+}
+
+.service-rich-text ul {
+  list-style-type: disc;
+}
+
+.service-rich-text ol {
+  list-style-type: decimal;
+}
+
+.service-rich-text ul ul {
+  list-style-type: circle;
+}
+
+.service-rich-text ul ul ul {
+  list-style-type: square;
+}
+
+.service-rich-text li + li,
+.service-rich-text li > ul,
+.service-rich-text li > ol {
+  margin-top: 0.5rem;
+}
+
+.service-rich-text :is(h1, h2, h3, h4, h5, h6) {
+  font-weight: 600;
+  line-height: 1.3;
+  margin-block: 1.5rem 0.75rem;
+}
+
+.service-rich-text h1 { font-size: 2rem; }
+.service-rich-text h2 { font-size: 1.5rem; }
+.service-rich-text h3 { font-size: 1.25rem; }
+.service-rich-text h4 { font-size: 1.125rem; }
+.service-rich-text :is(h5, h6) { font-size: 1rem; }
+
+.service-rich-text blockquote {
+  border-inline-start: 3px solid currentColor;
+  padding-inline-start: 1rem;
+  font-style: italic;
+}
+
+.service-rich-text a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.service-rich-text code {
+  border-radius: 0.25rem;
+  background: rgb(0 0 0 / 0.08);
+  padding: 0.1em 0.3em;
+}
+
 .gradient-a {
   border: 5px solid transparent;
   background: 

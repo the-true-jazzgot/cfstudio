@@ -30,7 +30,7 @@ export function ServiceSection({ service, setIsOpen }: ServiceSectionProps) {
         <div className="flex flex-wrap md:flex-nowrap justify-between">
           <div className="relative w-full md:w-1/3 p-4 bg-white/40 rounded-xl mr-2 mb-2 backdrop-blur-sm">
             {service && <>
-                <div className="text-black text-justify leading-relaxed">
+                <div className="service-rich-text text-black text-justify leading-relaxed">
                   <PortableText value={service.description} components={portableTextComponents} />
                 </div>
                 <button className="relative bg-black text-white text-sm rounded-lg px-4 py-2 mt-4 cursor-pointer" onClick={() => setIsOpen(true)}>

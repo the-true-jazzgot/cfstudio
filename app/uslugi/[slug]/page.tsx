@@ -112,7 +112,7 @@ export default async function ServicePage({ params }: Props) {
           <h1 className="text-4xl font-semibold leading-tight md:text-6xl">
             {service.name}
           </h1>
-          <div className="mt-8 max-w-prose space-y-5 text-white/90">
+          <div className="service-rich-text mt-8 max-w-prose text-white/90">
             <PortableText value={service.description} components={portableTextComponents} />
           </div>
         </aside>

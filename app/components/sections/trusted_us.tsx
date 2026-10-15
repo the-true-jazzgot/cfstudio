@@ -31,9 +31,6 @@ export async function TrustedUs() {
 
   return (
     <section className="w-full overflow-hidden py-12 z-10 border-y-2 border-white/20 backdrop-blur-sm bg-white/50">
-      <div className="px-4 text-center pb-6">
-        <h2 className="text-5xl font-bold text-black text-shadow-md">Zaufali nam</h2>
-      </div>
       <div>
         <div className="logo-marquee-wrapper overflow-hidden">
           <div className="logo-marquee animate-marquee">

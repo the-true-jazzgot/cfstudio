@@ -10,6 +10,7 @@ const fallbackWelcomeTitle = "KREATYWNE\nROZWIAZANIA\nDLA BIZNESU";
 
 interface WelcomeSettings {
   welcomePicture?: SanityImageSource;
+  welcomePictureDimensions?: { width: number; height: number };
   welcomePictureAlt?: string;
   welcomeTitle?: string;
   welcomeRichText?: PortableTextBlock[];
@@ -77,31 +78,31 @@ const welcomeComponents: PortableTextComponents = {
 };
 
 export default async function WelcomeSection() {
-  const query = `*[_type == "generalSettings"][0]{welcomePicture, welcomePictureAlt, welcomeTitle, welcomeRichText}`;
+  const query = `*[_type == "generalSettings"][0]{welcomePicture, "welcomePictureDimensions": welcomePicture.asset->metadata.dimensions, welcomePictureAlt, welcomeTitle, welcomeRichText}`;
   const settings = await client.fetch<WelcomeSettings>(query);
 
   const welcomeImage = settings?.welcomePicture
-    ? urlFor(settings.welcomePicture).auto("format").fit("crop").width(600).height(400).url()
+    ? urlFor(settings.welcomePicture).ignoreImageParams().auto("format").fit("max").width(1600).url()
     : null;
   const welcomeRichText = settings?.welcomeRichText?.length
     ? settings.welcomeRichText
     : createWelcomeRichTextFallback(settings?.welcomeTitle || fallbackWelcomeTitle);
 
   return (
-    <section className="relative z-20 grid min-h-screen grid-cols-1 bg-primary md:grid-cols-2">
+    <section className="relative z-20 grid grid-cols-1 bg-primary md:grid-cols-2">
       <div className="flex flex-col items-center justify-center px-8 py-20 md:px-12">
         <div className="max-w-xl space-y-2">
           <PortableText value={welcomeRichText} components={welcomeComponents} />
         </div>
       </div>
-      <div className="flex min-h-[50vh] items-center justify-center md:min-h-screen">
+      <div className="flex min-w-0 items-center justify-center">
         {welcomeImage && (
           <Image
             src={welcomeImage}
             alt={settings?.welcomePictureAlt || ""}
-            width={600}
-            height={400}
-            className="h-full w-full object-cover"
+            width={settings?.welcomePictureDimensions?.width || 600}
+            height={settings?.welcomePictureDimensions?.height || 400}
+            className="h-auto w-full object-contain"
             unoptimized
           />
         )}

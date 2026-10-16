@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { Video } from "../elements/video";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "motion/react";
 
 export function Hero() {
   const { scrollYProgress } = useScroll();

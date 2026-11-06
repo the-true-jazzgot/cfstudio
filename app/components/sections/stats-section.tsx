@@ -35,9 +35,7 @@ export default async function StatsSection() {
   const items = stats?.items?.length ? stats.items : fallbackStats;
 
   return (
-    <section className="relative bg-cyan-400 text-white py-28">
-      <div className="absolute inset-0 bg-black/20" />
-
+    <section className="relative bg-primary text-white py-28">
       <div className="relative mx-auto grid max-w-5xl grid-cols-2 gap-10 px-6 text-center md:flex md:items-start md:justify-around">
         {items.map((item, index) => (
           <div key={item._key || `${item.label}-${index}`} className="min-w-0">

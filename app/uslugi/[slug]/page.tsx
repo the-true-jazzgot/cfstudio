@@ -101,10 +101,12 @@ export default async function ServicePage({ params }: Props) {
       <section className="grid min-h-screen bg-primary md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
         <aside className="px-7 py-10 text-white md:sticky md:top-0 md:min-h-screen md:px-10 md:py-14">
           <Link
-            href="/"
-            className="mb-10 inline-flex text-sm font-semibold uppercase tracking-[0.25em] text-white/75 transition-opacity hover:opacity-70"
+            href="/#services"
+            aria-label="Zamknij usługę i wróć do listy usług"
+            className="fixed right-4 top-4 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-white text-gray-950 shadow-lg transition-colors hover:bg-gray-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-950 md:right-8 md:top-6"
           >
-            Powrót
+            <span aria-hidden="true" className="absolute h-[2px] w-5 rotate-45 rounded-full bg-current" />
+            <span aria-hidden="true" className="absolute h-[2px] w-5 -rotate-45 rounded-full bg-current" />
           </Link>
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.35em] text-white/70">
             Usługa
